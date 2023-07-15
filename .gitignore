@@ -477,5 +477,5 @@ $RECYCLE.BIN/
 *.lnk
 
 
-Discoteque.API/bin/
-Discoteque.API//obj/
+/bin/
+/obj/
