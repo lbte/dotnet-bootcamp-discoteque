@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RpzMYbEeQ/o5BQrNbvzUryBVoAOAVrWY976j1Wbpq73fmFQeMGjmWq3+5Jfg9R3O0w6ihf+vdIM/B48ESXC3Sg==",
+  "dgSpecHash": "Ya5XvkGhkk03asICOqoQVOSOmKBWpwgDBnQ48Y1WqVVggFrvFjE05LoriK4SfIzHjuoYTx8yIJro/Fw/U0pZFw==",
   "success": true,
-  "projectFilePath": "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.Data\\Discoteque.Data.csproj",
+  "projectFilePath": "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.Data\\Discoteque.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Laura\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.9\\microsoft.entityframeworkcore.7.0.9.nupkg.sha512",
     "C:\\Users\\Laura\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.9\\microsoft.entityframeworkcore.abstractions.7.0.9.nupkg.sha512",
