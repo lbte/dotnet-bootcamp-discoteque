@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0zeij57UXSDXtaHu9Xco7XdZIfqqZfzCMOlDvkoYZlBboYIlVizgMg31l8oo95ThaANv6KP/QVGJQmK+ACmKsg==",
+  "dgSpecHash": "L4fwyRforlVcOY3qAWj0t3/mYsVs4kmY2U506rIt5ridKoJf32cFdJPjhOfzWElL7cWEXgLfcqPr2XLSqf4sAA==",
   "success": true,
-  "projectFilePath": "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
+  "projectFilePath": "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Laura\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Laura\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
