@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj": {}
+    "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj": {}
   },
   "projects": {
-    "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj": {
+    "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
+        "projectUniqueName": "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
         "projectName": "Discoteque.API",
-        "projectPath": "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
+        "projectPath": "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\Discoteque.API.csproj",
         "packagesPath": "C:\\Users\\Laura\\.nuget\\packages\\",
-        "outputPath": "g:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\obj\\",
+        "outputPath": "G:\\Mi unidad\\3. Trabajo\\1. Perficient desde 2023.07\\dotnet-bootcamp-wwc\\Discoteque\\Discoteque.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Laura\\AppData\\Roaming\\NuGet\\NuGet.Config",
