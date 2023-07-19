@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Discoteque.Data;
+using Discoteque.Business.IServices;
+using Discoteque.Business.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add database and the model is DiscotequeContext and the type of database is UseInMemoryDatabase
+builder.Services.AddDbContext<DiscotequeContext>(
+    opt => opt.UseInMemoryDatabase("Discoteque")
+);
+
+// inyección de dependencias
+builder.Services.AddScoped<IArtistService, ArtistService>();
 
 var app = builder.Build();
 
