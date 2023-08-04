@@ -17,21 +17,28 @@ namespace Discoteque.API.Controllers
 
         // constructor
         public ArtistsController(IArtistService artistService) {
-            _artistService = artistService;
+            // se recibe la instancia llena para ejecutar los métodos cuando alguien haga una solicitud
+            _artistService = artistService; 
         }
 
         [HttpGet]
-        [Route("GetArtists")]
-        public async Task<IActionResult> Get() {
+        [Route("GetAllArtistsAsync")]
+        public async Task<IActionResult> GetAllArtistsAsync() {
             var artists = await _artistService.GetArtistsAsync();
             return Ok(artists);
         }
 
         [HttpPost]
-        [Route("CreateArtist")]
-        public async Task<IActionResult> Post([FromBody] Artist artist) {
+        [Route("CreateArtistAsync")]
+        public async Task<IActionResult> CreateArtistAsync(Artist artist) {
             var artists = await _artistService.CreateArtist(artist);
             return Ok(artists);
         }
+
+        [HttpPatch]
+        [Route("UpdateArtistAsync")]
+        public async Task<IActionResult> UpdateArtistAsync(Artist artist) {
+            return Ok();
+        }    
     }
 }

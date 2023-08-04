@@ -1,3 +1,4 @@
+using Discoteque.Data.Dto;
 using Discoteque.Data.Models;
 
 namespace Discoteque.Business.IServices;
@@ -8,7 +9,7 @@ public interface IArtistService {
     // el task está obligado a tener el await en algún sitio
     Task<IEnumerable<Artist>> GetArtistsAsync();
     Task<Artist> GetById(int id);
-    Task<IEnumerable<Artist>> CreateArtist(Artist artist);
+    Task<ArtistMessage> CreateArtist(Artist artist);
     Task<Artist> UpdateArtist(Artist artist);
 
 
