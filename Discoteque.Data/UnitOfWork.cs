@@ -9,6 +9,9 @@ public class UnitOfWork : IUnitOfWork, IDisposable {
     private readonly DiscotequeContext _context;
     private bool _disposed = false;
     private IRepository<int, Artist> _artistRespository;
+    private IRepository<int, Album> _albumRespository;
+    private IRepository<int, Song> _songRespository;
+    private IRepository<int, Tour> _tourRespository;
 
     public UnitOfWork(DiscotequeContext context) {
         _context = context;
@@ -23,7 +26,29 @@ public class UnitOfWork : IUnitOfWork, IDisposable {
             return _artistRespository;
         }
     }
+    
+    public IRepository<int, Album> AlbumRepository {
+        get {
+            _albumRespository ??= new Repository<int, Album>(_context);
+            return _albumRespository;
+        }
+    }
+    
+    public IRepository<int, Song> SongRepository {
+        get {
+            _songRespository ??= new Repository<int, Song>(_context);
+            return _songRespository;
+        }
+    }
+    
+    public IRepository<int, Tour> TourRepository {
+        get {
+            _tourRespository ??= new Repository<int, Tour>(_context);
+            return _tourRespository;
+        }
+    }
 
+    
     public async Task SaveAsync()
     {
         try {

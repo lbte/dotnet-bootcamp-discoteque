@@ -10,17 +10,17 @@ public  class Song : BaseEntity<int>
     /// Name of the Song
     /// </summary>
     public string Name { get; set; } = "";
-    /// <summary>
-    /// Duration of the son
-    /// </summary>
-    public int Duration { get; set; }
     
+    /// <summary>
+    /// Duration of the song
+    /// </summary>
+    public int Length { get; set; }
     
     /// <summary>
     /// The <see cref="Album"/> id this Song belongs to
     /// </summary>
     /// <value></value>
-    [ForeignKey("Id")]
+    [ForeignKey("Album")]
     public int AlbumId { get; set; }
 
     /// <summary>

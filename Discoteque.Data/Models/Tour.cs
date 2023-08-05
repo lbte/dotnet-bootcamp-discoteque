@@ -10,10 +10,11 @@ public  class Tour : BaseEntity<int>
     /// Name of the Tour
     /// </summary>
     public string Name { get; set; } = "";
+    
     /// <summary>
-    /// Year the albums was published
+    /// City of the tour
     /// </summary>
-    public int Year { get; set; }
+    public string City { get; set; } = "";
     
     /// <summary>
     /// Date of the Tour 
@@ -29,7 +30,7 @@ public  class Tour : BaseEntity<int>
     /// The <see cref="Artist"/> id this Tour belongs to
     /// </summary>
     /// <value></value>
-    [ForeignKey("Id")]
+    [ForeignKey("Artist")]
     public int ArtistId { get; set; }
 
     /// <summary>

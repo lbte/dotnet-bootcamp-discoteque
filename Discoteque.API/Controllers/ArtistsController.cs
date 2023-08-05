@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Discoteque.Business.IServices;
 using Discoteque.Data.Models;
+using System.Net;
 
 namespace Discoteque.API.Controllers
 {
@@ -15,7 +16,6 @@ namespace Discoteque.API.Controllers
     {
         private readonly IArtistService _artistService;
 
-        // constructor
         public ArtistsController(IArtistService artistService) {
             // se recibe la instancia llena para ejecutar los métodos cuando alguien haga una solicitud
             _artistService = artistService; 
@@ -25,20 +25,21 @@ namespace Discoteque.API.Controllers
         [Route("GetAllArtistsAsync")]
         public async Task<IActionResult> GetAllArtistsAsync() {
             var artists = await _artistService.GetArtistsAsync();
-            return Ok(artists);
+            return artists.Any() ? Ok(artists) : StatusCode(StatusCodes.Status404NotFound, "There were no artists found to show");
         }
 
         [HttpPost]
         [Route("CreateArtistAsync")]
         public async Task<IActionResult> CreateArtistAsync(Artist artist) {
-            var artists = await _artistService.CreateArtist(artist);
-            return Ok(artists);
+            var newArtist = await _artistService.CreateArtist(artist);
+            return newArtist.StatusCode == HttpStatusCode.OK ? Ok(newArtist) : StatusCode((int)newArtist.StatusCode, newArtist);
         }
 
         [HttpPatch]
         [Route("UpdateArtistAsync")]
         public async Task<IActionResult> UpdateArtistAsync(Artist artist) {
-            return Ok();
+            var updatedArtist = await _artistService.UpdateArtist(artist);
+            return Ok(updatedArtist);
         }    
     }
 }
