@@ -16,6 +16,14 @@ public class SongController : ControllerBase
     {
         _songService = songService;
     }
+    
+    [HttpGet]
+    [Route("GetSongById")]
+    public async Task<IActionResult> GetSongById(int id)
+    {
+        var song = await _songService.GetById(id);
+        return song != null ? Ok(song) : StatusCode(StatusCodes.Status404NotFound, $"There was no song found with the Id number {id}");
+    }
 
     [HttpGet]
     [Route("GetSongs")]
@@ -25,13 +33,6 @@ public class SongController : ControllerBase
         return songs.Any() ? Ok(songs) : StatusCode(StatusCodes.Status404NotFound, "There were no songs found to show");
     }
 
-    [HttpGet]
-    [Route("GetSongById")]
-    public async Task<IActionResult> GetSongById(int id)
-    {
-        var song = await _songService.GetById(id);
-        return song != null ? Ok(song) : StatusCode(StatusCodes.Status404NotFound, $"There was no song found with the Id number {id}");
-    }
 
     [HttpGet]
     [Route("GetSongsByAlbum")]
@@ -50,9 +51,9 @@ public class SongController : ControllerBase
 
     [HttpPost]
     [Route("CreateSong")]
-    public async Task<IActionResult> CreateSongsAsync(Song Song)
+    public async Task<IActionResult> CreateSong(Song song)
     {
-        var newSong = await _songService.CreateSong(Song);
+        var newSong = await _songService.CreateSong(song);
         return newSong.StatusCode == HttpStatusCode.OK ? Ok(newSong) : StatusCode((int)newSong.StatusCode, newSong);
     }
 
@@ -60,6 +61,6 @@ public class SongController : ControllerBase
     [Route("UpdateSong")]
     public async Task<IActionResult> UpdateSong(Song song) {
         var updatedSong = await _songService.UpdateSong(song);
-        return Ok(updatedSong);
+        return updatedSong != null ? Ok(updatedSong) : StatusCode(StatusCodes.Status404NotFound, "The song was not updated");
     }
 }

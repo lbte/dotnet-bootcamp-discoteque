@@ -24,7 +24,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IArtistService, ArtistService>();
 builder.Services.AddScoped<IAlbumService, AlbumService>();
 builder.Services.AddScoped<ISongService, SongService>();
-// builder.Services.AddScoped<ITourService, TourService>();
+builder.Services.AddScoped<ITourService, TourService>();
 
 var app = builder.Build();
 PopulateDb(app);
@@ -47,7 +47,7 @@ app.Run();
 
 #region  DB Population
 /// <summary>
-/// Populate teh Database with some data.
+/// Populate the Database with some data.
 /// </summary>
 /// <param name="app"></param>
 async void PopulateDb(WebApplication app)
@@ -57,7 +57,7 @@ async void PopulateDb(WebApplication app)
         var artistService = scope.ServiceProvider.GetRequiredService<IArtistService>();
         var albumService = scope.ServiceProvider.GetRequiredService<IAlbumService>();
         var songService = scope.ServiceProvider.GetRequiredService<ISongService>();
-        // var tourService = scope.ServiceProvider.GetRequiredService<ITourService>();
+        var tourService = scope.ServiceProvider.GetRequiredService<ITourService>();
 
         // Artists
         await artistService.CreateArtist(new Discoteque.Data.Models.Artist{
@@ -595,6 +595,23 @@ async void PopulateDb(WebApplication app)
             Length = 198,
             AlbumId = 4
         });   
+        #endregion
+
+        #region Tour
+        await tourService.CreateTour(new Discoteque.Data.Models.Tour{
+            Name = "Mientras me curo del cora",
+            City = "Medellin",
+            TourDate = new DateTime(2023, 07, 31),
+            IsSoldOut = true,
+            ArtistId = 1
+        });
+        await tourService.CreateTour(new Discoteque.Data.Models.Tour{
+            Name = "Juanes & Morat",
+            City = "Medellin",
+            TourDate = new DateTime(2023, 04, 21),
+            IsSoldOut = true,
+            ArtistId = 2
+        });
         #endregion
     }
 }

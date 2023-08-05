@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.RegularExpressions;
 using Discoteque.Business.IServices;
 using Discoteque.Data;
 using Discoteque.Data.Dto;
@@ -26,7 +27,7 @@ public class AlbumService : IAlbumService {
             var artist = await _unitOfWork.ArtistRepository.FindAsync(newAlbum.ArtistId);
 
             // TODO: Condition for the forbidden words
-            if(artist == null || newAlbum.Cost < 0 || newAlbum.Year < 1900 || newAlbum.Year > 2023) {
+            if(artist == null || newAlbum.Cost < 0 || newAlbum.Year < 1900 || newAlbum.Year > 2023 || AreForbiddenWordsContained(newAlbum.Name)) {
                 return BuildResponse(HttpStatusCode.BadRequest, BaseMessageStatus.BAD_REQUEST_400);
             }
 
@@ -120,6 +121,10 @@ public class AlbumService : IAlbumService {
     }
 
     // TODO: Method to not accept album with the forbidden words in the name
+    private static bool AreForbiddenWordsContained(string name) {
+        var forbiddenWords = new List<string>(){"Revolución", "Poder", "Amor", "Guerra"};
+        return forbiddenWords.Any(forbiddenWord => Regex.IsMatch(name, Regex.Escape(forbiddenWord), RegexOptions.IgnoreCase));
+    }
 
     #region Messages
     private static AlbumMessage BuildResponse(HttpStatusCode statusCode, string message) {

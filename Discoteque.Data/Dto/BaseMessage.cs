@@ -14,5 +14,6 @@ public static class BaseMessageStatus {
     public const string INTERNAL_SERVER_ERROR_500 = "500 Internal Server Error";
     public const string NOT_FOUND_404 = "404 Not Found";
     public const string ALBUM_NOT_FOUND = "404 Album Not Found";
+    public const string ARTIST_NOT_FOUND = "404 Artist Not Found";
     }
 

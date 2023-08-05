@@ -6,7 +6,7 @@ namespace Discoteque.Data;
 public class DiscotequeContext: DbContext {
 
     // se hereda del sistema principal cómo se configura, el DbContext es el que hace todo lo de la bd
-    public DiscotequeContext(   DbContextOptions<DiscotequeContext> options): base(options) {
+    public DiscotequeContext(DbContextOptions<DiscotequeContext> options): base(options) {
     }
 
     // Tabla donde se van a tener artistas y los albums

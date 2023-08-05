@@ -39,7 +39,7 @@ namespace Discoteque.API.Controllers
         [Route("UpdateArtistAsync")]
         public async Task<IActionResult> UpdateArtistAsync(Artist artist) {
             var updatedArtist = await _artistService.UpdateArtist(artist);
-            return Ok(updatedArtist);
+            return updatedArtist != null ? Ok(updatedArtist) : StatusCode(StatusCodes.Status404NotFound, "The artist was not updated");;
         }    
     }
 }

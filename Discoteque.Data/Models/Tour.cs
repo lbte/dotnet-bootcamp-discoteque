@@ -19,12 +19,12 @@ public  class Tour : BaseEntity<int>
     /// <summary>
     /// Date of the Tour 
     /// </summary>
-    public DateTime TourDate { get; set; }
+    public DateTime TourDate { get; set; } = DateTime.Now;
 
     /// <summary>
     /// Is it completely sold? 
     /// </summary>
-    public bool IsSoldOut { get; set; }
+    public bool IsSoldOut { get; set; } = false;
     
     /// <summary>
     /// The <see cref="Artist"/> id this Tour belongs to

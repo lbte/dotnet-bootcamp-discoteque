@@ -68,7 +68,7 @@ public class AlbumController : ControllerBase {
     [Route("UpdateAlbum")]
     public async Task<IActionResult> UpdateAlbum(Album album) {
         var updatedAlbum = await _albumService.UpdateAlbum(album);
-        return Ok(updatedAlbum);
+        return updatedAlbum != null ? Ok(updatedAlbum) : StatusCode(StatusCodes.Status404NotFound, "The album was not updated");;
     }
 
     

@@ -8,10 +8,10 @@ namespace Discoteque.Data;
 public class UnitOfWork : IUnitOfWork, IDisposable {
     private readonly DiscotequeContext _context;
     private bool _disposed = false;
-    private IRepository<int, Artist> _artistRespository;
-    private IRepository<int, Album> _albumRespository;
-    private IRepository<int, Song> _songRespository;
-    private IRepository<int, Tour> _tourRespository;
+    private IRepository<int, Artist> _artistRepository;
+    private IRepository<int, Album> _albumRepository;
+    private IRepository<int, Song> _songRepository;
+    private IRepository<int, Tour> _tourRepository;
 
     public UnitOfWork(DiscotequeContext context) {
         _context = context;
@@ -22,29 +22,29 @@ public class UnitOfWork : IUnitOfWork, IDisposable {
             // The null-coalescing assignment operator ??= assigns the value of its right-hand operand to 
             // its left-hand operand only if the left-hand operand evaluates to null. The ??= operator doesn't 
             // evaluate its right-hand operand if the left-hand operand evaluates to non-null.
-            _artistRespository ??= new Repository<int, Artist>(_context);
-            return _artistRespository;
+            _artistRepository ??= new Repository<int, Artist>(_context);
+            return _artistRepository;
         }
     }
     
     public IRepository<int, Album> AlbumRepository {
         get {
-            _albumRespository ??= new Repository<int, Album>(_context);
-            return _albumRespository;
+            _albumRepository ??= new Repository<int, Album>(_context);
+            return _albumRepository;
         }
     }
     
     public IRepository<int, Song> SongRepository {
         get {
-            _songRespository ??= new Repository<int, Song>(_context);
-            return _songRespository;
+            _songRepository ??= new Repository<int, Song>(_context);
+            return _songRepository;
         }
     }
     
     public IRepository<int, Tour> TourRepository {
         get {
-            _tourRespository ??= new Repository<int, Tour>(_context);
-            return _tourRespository;
+            _tourRepository ??= new Repository<int, Tour>(_context);
+            return _tourRepository;
         }
     }
 
