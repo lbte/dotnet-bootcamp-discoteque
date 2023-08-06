@@ -1,8 +1,10 @@
 using System.Data.SqlTypes;
 using System.Net;
+using System;
 using Discoteque.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Discoteque.Business.IServices;
+using Discoteque.Data.Dto;
 
 namespace Discoteque.API.Controllers;
 
@@ -55,6 +57,14 @@ public class SongController : ControllerBase
     {
         var newSong = await _songService.CreateSong(song);
         return newSong.StatusCode == HttpStatusCode.OK ? Ok(newSong) : StatusCode((int)newSong.StatusCode, newSong);
+    }
+
+    [HttpPost]
+    [Route("CreateSongs")]
+    public async Task<IActionResult> CreateSongs(List<Song> songs)
+    {
+        var newSongs = await _songService.CreateSongsInBatch(songs);
+        return newSongs.StatusCode == HttpStatusCode.OK ? Ok(newSongs) : StatusCode((int)newSongs.StatusCode, newSongs);
     }
 
     [HttpPatch]

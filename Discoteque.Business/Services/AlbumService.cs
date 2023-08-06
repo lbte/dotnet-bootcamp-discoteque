@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.RegularExpressions;
 using Discoteque.Business.IServices;
+using Discoteque.Business.Utils;
 using Discoteque.Data;
 using Discoteque.Data.Dto;
 using Discoteque.Data.Models;
@@ -122,9 +123,9 @@ public class AlbumService : IAlbumService {
         return album;
     }
 
-    // TODO: Method to not accept album with the forbidden words in the name
     private static bool AreForbiddenWordsContained(string name) {
         var forbiddenWords = new List<string>(){"Revolución", "Poder", "Amor", "Guerra"};
         return forbiddenWords.Any(forbiddenWord => Regex.IsMatch(name, Regex.Escape(forbiddenWord), RegexOptions.IgnoreCase));
     }
+
 }

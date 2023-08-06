@@ -1,5 +1,6 @@
 using System.Net;
 using Discoteque.Business.IServices;
+using Discoteque.Business.Utils;
 using Discoteque.Data;
 using Discoteque.Data.Dto;
 using Discoteque.Data.Models;
@@ -34,6 +35,27 @@ public class SongService : ISongService
         }
 
         return BuildResponseClass<Song>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){newSong});
+    }
+
+    /// <summary>
+    /// Creates a new set of <see cref="Song"/> entities in the DB.
+    /// </summary>
+    /// <param name="songs">A <see cref="List"/> of entities from Song</param>
+    /// <returns></returns>
+    public async Task<EntityMessage<Song>> CreateSongsInBatch(List<Song> songs) {
+        try {
+            foreach (var song in songs) {
+                var album = await _unitOfWork.AlbumRepository.FindAsync(song.AlbumId);
+                if(album == null) {
+                    return BuildResponseClass<Song>.BuildResponse(HttpStatusCode.NotFound, EntityMessageStatus.ALBUM_NOT_FOUND);
+                }
+                await _unitOfWork.SongRepository.AddAsync(song);
+            }
+            await _unitOfWork.SaveAsync();
+        } catch (Exception) {
+            return BuildResponseClass<Song>.BuildResponse(HttpStatusCode.InternalServerError, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
+        }
+        return BuildResponseClass<Song>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, songs);
     }
 
     /// <summary>

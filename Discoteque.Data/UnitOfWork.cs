@@ -58,6 +58,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable {
             ex.Entries.Single().Reload();  
         }
     }
+    
 #region IDisposable
     protected virtual void Dispose(bool disposing)
     {

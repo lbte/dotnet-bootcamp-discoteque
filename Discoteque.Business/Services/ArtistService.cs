@@ -1,5 +1,6 @@
 using System.Net;
 using Discoteque.Business.IServices;
+using Discoteque.Business.Utils;
 using Discoteque.Data;
 using Discoteque.Data.Dto;
 using Discoteque.Data.Models;
@@ -36,11 +37,11 @@ public class ArtistService : IArtistService
             await _unitOfWork.ArtistRepository.AddAsync(newArtist);
             await _unitOfWork.SaveAsync();
         } catch (Exception) {
-            return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.BadRequest, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
+            return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.InternalServerError, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
         }
 
         // returns the artist that was created
-        return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){artist});
+        return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){newArtist});
     }
 
     /// <summary>
@@ -73,24 +74,4 @@ public class ArtistService : IArtistService
         await _unitOfWork.SaveAsync();
         return artist;
     }
-
-    // #region Messages
-    // private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message) {
-    //     return new ArtistMessage{
-    //         Message = message,
-    //         TotalElements = 0,
-    //         StatusCode = statusCode
-    //     };
-    // }
-
-    // private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message, List<Artist> artist) {
-    //     return new ArtistMessage{
-    //         Message = message,
-    //         TotalElements = artist.Count,
-    //         StatusCode = statusCode,
-    //         Artists = artist
-    //     };
-    // }
-    // #endregion
-
 }

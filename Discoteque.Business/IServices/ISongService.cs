@@ -41,6 +41,13 @@ public interface ISongService
     Task<EntityMessage<Song>> CreateSong(Song song);
     
     /// <summary>
+    /// Creates a new set of <see cref="Song"/> entities in the DB.
+    /// </summary>
+    /// <param name="songs">A <see cref="List"/> of entities from Song</param>
+    /// <returns></returns>
+    Task<EntityMessage<Song>> CreateSongsInBatch(List<Song> songs);
+    
+    /// <summary>
     /// Updates the <see cref="Song"/> entity in the DB
     /// </summary>
     /// <param name="song">The Song entity to update</param>

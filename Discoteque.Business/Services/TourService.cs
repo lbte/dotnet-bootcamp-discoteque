@@ -1,8 +1,10 @@
 using System.Net;
 using Discoteque.Business.IServices;
+using Discoteque.Business.Utils;
 using Discoteque.Data;
 using Discoteque.Data.Dto;
 using Discoteque.Data.Models;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Discoteque.Business.Services;
 

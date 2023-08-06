@@ -1,13 +1,14 @@
 using System.Net;
+using Discoteque.Data.Models;
 
 namespace Discoteque.Data.Dto;
 
 public class EntityMessage<TEntity> {
 
     public string Message { get; set;} = "";
-    public HttpStatusCode StatusCode { get; set;}
-    public int TotalElements {get; set; }
-    public List<TEntity> Elements { get; set; } = new();
+    public HttpStatusCode StatusCode { get; set; }
+    public int TotalElements { get; set; } = 0;
+    public List<TEntity> Elements { get; set; } = new List<TEntity>();
 }
 
 public static class EntityMessageStatus
