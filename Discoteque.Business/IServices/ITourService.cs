@@ -44,7 +44,7 @@ public interface ITourService {
     /// </summary>
     /// <param name="tour">A new tour entity</param>
     /// <returns>The created tour with an assigned id</returns>
-    Task<TourMessage> CreateTour(Tour tour);
+    Task<EntityMessage<Tour>> CreateTour(Tour tour);
     
     /// <summary>
     /// Updates the <see cref="Tour"/> entity in the DB

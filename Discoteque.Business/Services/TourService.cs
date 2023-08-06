@@ -19,21 +19,21 @@ public class TourService : ITourService
     /// </summary>
     /// <param name="tour">A new tour entity</param>
     /// <returns>The created tour with an assigned id</returns>
-    public async Task<TourMessage> CreateTour(Tour tour)
+    public async Task<EntityMessage<Tour>> CreateTour(Tour tour)
     {
         try {
             var artist = await _unitOfWork.ArtistRepository.FindAsync(tour.ArtistId);
             if (tour.TourDate.Year <= 2021 || artist == null) {
-                return BuildResponse(HttpStatusCode.NotFound, BaseMessageStatus.ARTIST_NOT_FOUND);
+                return BuildResponseClass<Tour>.BuildResponse(HttpStatusCode.NotFound, EntityMessageStatus.ARTIST_NOT_FOUND);
             }
 
             await _unitOfWork.TourRepository.AddAsync(tour);
             await _unitOfWork.SaveAsync();
         } catch (Exception) {
-            return BuildResponse(HttpStatusCode.InternalServerError, BaseMessageStatus.INTERNAL_SERVER_ERROR_500);
+            return BuildResponseClass<Tour>.BuildResponse(HttpStatusCode.InternalServerError, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
         }
 
-        return BuildResponse(HttpStatusCode.OK, BaseMessageStatus.OK_200, new(){tour});
+        return BuildResponseClass<Tour>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){tour});
     }
 
     /// <summary>
@@ -97,22 +97,4 @@ public class TourService : ITourService
         return tour;
     }
 
-    #region Messages
-    private static TourMessage BuildResponse(HttpStatusCode statusCode, string message) {
-        return new TourMessage{
-            Message = message,
-            TotalElements = 0,
-            StatusCode = statusCode
-        };
-    }
-
-    private static TourMessage BuildResponse(HttpStatusCode statusCode, string message, List<Tour> tours) {
-        return new TourMessage{
-            Message = message,
-            TotalElements = tours.Count,
-            StatusCode = statusCode,
-            Tours = tours
-        };
-    }
-    #endregion
 }

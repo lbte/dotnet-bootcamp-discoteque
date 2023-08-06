@@ -38,7 +38,7 @@ public interface ISongService
     /// </summary>
     /// <param name="song">A new song entity</param>
     /// <returns>The created song with an Id assigned</returns>
-    Task<SongMessage> CreateSong(Song song);
+    Task<EntityMessage<Song>> CreateSong(Song song);
     
     /// <summary>
     /// Updates the <see cref="Song"/> entity in the DB

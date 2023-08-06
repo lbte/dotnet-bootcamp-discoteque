@@ -19,7 +19,7 @@ public class ArtistService : IArtistService
     /// </summary>
     /// <param name="artist">A new artist entity</param>
     /// <returns>The created artist with an assigned id</returns>
-    public async Task<ArtistMessage> CreateArtist(Artist artist)
+    public async Task<EntityMessage<Artist>> CreateArtist(Artist artist)
     {
         // create the instance
         var newArtist = new Artist() {
@@ -30,17 +30,17 @@ public class ArtistService : IArtistService
 
         try {
             if (artist.Name.Length > 100){
-                return BuildResponse(HttpStatusCode.BadRequest, BaseMessageStatus.BAD_REQUEST_400);
+                return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.BadRequest, EntityMessageStatus.BAD_REQUEST_400);
             }
 
             await _unitOfWork.ArtistRepository.AddAsync(newArtist);
             await _unitOfWork.SaveAsync();
         } catch (Exception) {
-            return BuildResponse(HttpStatusCode.BadRequest, BaseMessageStatus.INTERNAL_SERVER_ERROR_500);
+            return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.BadRequest, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
         }
 
         // returns the artist that was created
-        return BuildResponse(HttpStatusCode.OK, BaseMessageStatus.OK_200, new(){artist});
+        return BuildResponseClass<Artist>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){artist});
     }
 
     /// <summary>
@@ -74,23 +74,23 @@ public class ArtistService : IArtistService
         return artist;
     }
 
-    #region Messages
-    private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message) {
-        return new ArtistMessage{
-            Message = message,
-            TotalElements = 0,
-            StatusCode = statusCode
-        };
-    }
+    // #region Messages
+    // private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message) {
+    //     return new ArtistMessage{
+    //         Message = message,
+    //         TotalElements = 0,
+    //         StatusCode = statusCode
+    //     };
+    // }
 
-    private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message, List<Artist> artist) {
-        return new ArtistMessage{
-            Message = message,
-            TotalElements = artist.Count,
-            StatusCode = statusCode,
-            Artists = artist
-        };
-    }
-    #endregion
+    // private static ArtistMessage BuildResponse(HttpStatusCode statusCode, string message, List<Artist> artist) {
+    //     return new ArtistMessage{
+    //         Message = message,
+    //         TotalElements = artist.Count,
+    //         StatusCode = statusCode,
+    //         Artists = artist
+    //     };
+    // }
+    // #endregion
 
 }
