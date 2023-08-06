@@ -20,7 +20,9 @@ public class AlbumService : IAlbumService {
     /// </summary>
     /// <param name="album">A new album entity</param>
     /// <returns>The created album with an assigned Id</returns>
-    public async Task<AlbumMessage> CreateAlbum(Album newAlbum)
+    /// 
+    // public async Task<AlbumMessage> CreateAlbum(Album newAlbum)
+    public async Task<EntityMessage<Album>> CreateAlbum(Album newAlbum)
     {
         try {
             // the artist must exists
@@ -28,16 +30,16 @@ public class AlbumService : IAlbumService {
 
             // TODO: Condition for the forbidden words
             if(artist == null || newAlbum.Cost < 0 || newAlbum.Year < 1900 || newAlbum.Year > 2023 || AreForbiddenWordsContained(newAlbum.Name)) {
-                return BuildResponse(HttpStatusCode.BadRequest, BaseMessageStatus.BAD_REQUEST_400);
+                return BuildResponseClass<Album>.BuildResponse(HttpStatusCode.BadRequest, EntityMessageStatus.BAD_REQUEST_400);
             }
 
             await _unitOfWork.AlbumRepository.AddAsync(newAlbum);
             await _unitOfWork.SaveAsync();
         } catch (Exception) {
-            return BuildResponse(HttpStatusCode.InternalServerError, BaseMessageStatus.INTERNAL_SERVER_ERROR_500);
+            return BuildResponseClass<Album>.BuildResponse(HttpStatusCode.InternalServerError, EntityMessageStatus.INTERNAL_SERVER_ERROR_500);
         }
 
-        return BuildResponse(HttpStatusCode.OK, BaseMessageStatus.OK_200, new(){newAlbum});
+        return BuildResponseClass<Album>.BuildResponse(HttpStatusCode.OK, EntityMessageStatus.OK_200, new(){newAlbum});
     }
 
     /// <summary>
@@ -125,23 +127,4 @@ public class AlbumService : IAlbumService {
         var forbiddenWords = new List<string>(){"Revolución", "Poder", "Amor", "Guerra"};
         return forbiddenWords.Any(forbiddenWord => Regex.IsMatch(name, Regex.Escape(forbiddenWord), RegexOptions.IgnoreCase));
     }
-
-    #region Messages
-    private static AlbumMessage BuildResponse(HttpStatusCode statusCode, string message) {
-        return new AlbumMessage{
-            Message = message,
-            TotalElements = 0,
-            StatusCode = statusCode
-        };
-    }
-
-    private static AlbumMessage BuildResponse(HttpStatusCode statusCode, string message, List<Album> album) {
-        return new AlbumMessage{
-            Message = message,
-            TotalElements = album.Count,
-            StatusCode = statusCode,
-            Albums = album
-        };
-    }
-    #endregion
 }

@@ -25,7 +25,7 @@ public interface IArtistService {
     /// </summary>
     /// <param name="artist">A new artist entity</param>
     /// <returns>The created artist with an assigned id</returns>
-    Task<ArtistMessage> CreateArtist(Artist artist);
+    Task<EntityMessage<Artist>> CreateArtist(Artist artist);
     
     /// <summary>
     /// Updates the <see cref="Artist"/> entity in the DB

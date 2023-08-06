@@ -53,7 +53,7 @@ public interface IAlbumService {
     /// </summary>
     /// <param name="album">A new album entity</param>
     /// <returns>The created album with an assigned Id</returns>
-    Task <AlbumMessage> CreateAlbum(Album album);
+    Task <EntityMessage<Album>> CreateAlbum(Album album);
 
     /// <summary>
     /// Updates the <see cref="Album"/> entity in the DB
