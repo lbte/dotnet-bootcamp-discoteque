@@ -127,5 +127,4 @@ public class AlbumService : IAlbumService {
         var forbiddenWords = new List<string>(){"Revolución", "Poder", "Amor", "Guerra"};
         return forbiddenWords.Any(forbiddenWord => Regex.IsMatch(name, Regex.Escape(forbiddenWord), RegexOptions.IgnoreCase));
     }
-
 }
