@@ -5,10 +5,11 @@ namespace Discoteque.Business.IServices;
 public interface ISongService
 {
     /// <summary>
-    /// Finds all songs in the DB
+    /// Find all songs in the DB
     /// </summary>
-    /// <returns>A <see cref="List" /> of <see cref="Song"/> </returns>
-    Task<IEnumerable<Song>> GetSongsAsync();
+    /// <param name="areReferencesLoaded">Returns associated albums per song if true</param>
+    /// <returns>A <see cref="List"/> of <see cref="Song"/></returns>
+    Task<IEnumerable<Song>> GetSongsAsync(bool areReferencesLoaded);
     
     /// <summary>
     /// A list of songs contained in <see cref="Album"/>

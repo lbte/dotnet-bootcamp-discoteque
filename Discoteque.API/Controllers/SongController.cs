@@ -29,9 +29,9 @@ public class SongController : ControllerBase
 
     [HttpGet]
     [Route("GetSongs")]
-    public async Task<IActionResult> GetSongs()
+    public async Task<IActionResult> GetSongs(bool areReferencesLoaded = false)
     {
-        var songs = await _songService.GetSongsAsync();
+        var songs = await _songService.GetSongsAsync(areReferencesLoaded);
         return songs.Any() ? Ok(songs) : StatusCode(StatusCodes.Status404NotFound, "There were no songs found to show");
     }
 

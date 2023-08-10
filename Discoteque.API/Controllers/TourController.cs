@@ -23,9 +23,9 @@ public class TourController : ControllerBase {
 
     [HttpGet]
     [Route("GetTours")]
-    public async Task<IActionResult> GetTours() {
-        var tours = await _tourService.GetToursAsync();
-        return tours.Any() ? Ok(tours) : StatusCode(StatusCodes.Status404NotFound, "There were no tours found");
+    public async Task<IActionResult> GetTours(bool areReferencesLoaded = false) {
+        var tours = await _tourService.GetToursAsync(areReferencesLoaded);
+        return tours.Any() ? Ok(tours) : StatusCode(StatusCodes.Status404NotFound, "There were no tours found to show");
     }
 
     [HttpGet]

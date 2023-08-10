@@ -69,12 +69,19 @@ public class SongService : ISongService
     }
 
     /// <summary>
-    /// Finds all songs in the DB
+    /// Find all songs in the DB
     /// </summary>
-    /// <returns>A <see cref="List" /> of <see cref="Song"/> </returns>
-    public async Task<IEnumerable<Song>> GetSongsAsync()
+    /// <param name="areReferencesLoaded">Returns associated albums per song if true</param>
+    /// <returns>A <see cref="List"/> of <see cref="Song"/></returns>
+    public async Task<IEnumerable<Song>> GetSongsAsync(bool areReferencesLoaded)
     {
-        return await _unitOfWork.SongRepository.GetAllAsync();
+        IEnumerable<Song> songs;
+        if (areReferencesLoaded) {
+            songs = await _unitOfWork.SongRepository.GetAllAsync(null, x => x.OrderBy(x => x.Id), new Album().GetType().Name);
+        } else {
+            songs = await _unitOfWork.SongRepository.GetAllAsync();
+        }
+        return songs;
     }
 
     /// <summary>

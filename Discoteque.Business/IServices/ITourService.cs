@@ -6,10 +6,11 @@ namespace Discoteque.Business.IServices;
 public interface ITourService {
 
     /// <summary>
-    /// Finds all Tours
+    /// Find all tours in the DB
     /// </summary>
+    /// <param name="areReferencesLoaded">Returns associated artists per tour if true</param>
     /// <returns>A <see cref="List"/> of <see cref="Tour"/></returns>
-    Task<IEnumerable<Tour>> GetToursAsync();
+    Task<IEnumerable<Tour>> GetToursAsync(bool areReferencesLoaded);
 
     /// <summary>
     /// Find a tour by its id in the DB

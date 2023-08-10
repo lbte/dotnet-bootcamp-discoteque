@@ -49,12 +49,19 @@ public class TourService : ITourService
     }
 
     /// <summary>
-    /// Finds all Tours
+    /// Find all tours in the DB
     /// </summary>
+    /// <param name="areReferencesLoaded">Returns associated artists per tour if true</param>
     /// <returns>A <see cref="List"/> of <see cref="Tour"/></returns>
-    public async Task<IEnumerable<Tour>> GetToursAsync()
+    public async Task<IEnumerable<Tour>> GetToursAsync(bool areReferencesLoaded)
     {
-        return await _unitOfWork.TourRepository.GetAllAsync();
+        IEnumerable<Tour> tours;
+        if (areReferencesLoaded) {
+            tours = await _unitOfWork.TourRepository.GetAllAsync(null, x => x.OrderBy(x => x.Id), new Artist().GetType().Name);
+        } else {
+            tours = await _unitOfWork.TourRepository.GetAllAsync();
+        }
+        return tours;
     }
 
     /// <summary>
