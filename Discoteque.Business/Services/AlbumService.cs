@@ -30,7 +30,7 @@ public class AlbumService : IAlbumService {
             var artist = await _unitOfWork.ArtistRepository.FindAsync(newAlbum.ArtistId);
 
             // TODO: Condition for the forbidden words
-            if(artist == null || newAlbum.Cost < 0 || newAlbum.Year < 1900 || newAlbum.Year > 2023 || AreForbiddenWordsContained(newAlbum.Name)) {
+            if(artist == null || newAlbum.Cost < 0 || newAlbum.Year < 1905 || newAlbum.Year > 2023 || AreForbiddenWordsContained(newAlbum.Name)) {
                 return BuildResponseClass<Album>.BuildResponse(HttpStatusCode.BadRequest, EntityMessageStatus.BAD_REQUEST_400);
             }
 

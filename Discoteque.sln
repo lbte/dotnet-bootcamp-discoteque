@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discoteque.Business", "Disc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discoteque.Data", "Discoteque.Data\Discoteque.Data.csproj", "{7D58F1B9-12A4-4259-9149-EE1A3E3751BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discoteque.Tests", "Discoteque.Tests\Discoteque.Tests.csproj", "{372C940C-D0C1-418F-9534-8BC587A253CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{7D58F1B9-12A4-4259-9149-EE1A3E3751BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D58F1B9-12A4-4259-9149-EE1A3E3751BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D58F1B9-12A4-4259-9149-EE1A3E3751BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372C940C-D0C1-418F-9534-8BC587A253CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372C940C-D0C1-418F-9534-8BC587A253CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372C940C-D0C1-418F-9534-8BC587A253CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372C940C-D0C1-418F-9534-8BC587A253CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
